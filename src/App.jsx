@@ -1,41 +1,38 @@
-import React from 'react';
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import ProblemSet from './pages/ProblemSet';
-import ProblemDetails from './pages/ProblemDetails';
+import React from 'react'
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+import ProblemSet from './pages/ProblemSet'
+import ProblemDetails from './pages/ProblemDetails'
 
 const AppLayout = () => {
-  console.log("AppLayout Rendered");
+  console.log('AppLayout Rendered')
   return (
-      <div className="app">
-        <Outlet />
-      </div>
-    
-  );
-};
-
+    <div className="app">
+      <Outlet />
+    </div>
+  )
+}
 
 const appRouter = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
     errorElement: <ProblemSet />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <ProblemSet />,
       },
       {
-        path: "/problemset",
+        path: '/problemset',
         element: <ProblemSet />,
       },
       {
-        path: "/problems/:problemSlug",
+        path: '/problems/:problemSlug',
         element: <ProblemDetails />,
       },
-    ]
-  }
-  
-]);
+    ],
+  },
+])
+const AppRouter = () => <RouterProvider router={appRouter} />
 
-
-export default () => <RouterProvider router={appRouter} />;
+export default AppRouter

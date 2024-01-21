@@ -1,28 +1,26 @@
 // ProblemSubmission.js
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt, faEdit, faCode, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import Progress from '../components/Progress';
+import React, { useState, useEffect } from 'react'
+import Progress from '../components/Progress'
 
 const ProblemSubmission = ({ handleRun, handleSubmit, runResult }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const hasServerResponse = runResult !== null;
+  const [isLoading, setIsLoading] = useState(false)
+  const hasServerResponse = runResult !== null
 
   const handleRunClick = () => {
-    setIsLoading(true);
-    handleRun();
-  };
+    setIsLoading(true)
+    handleRun()
+  }
 
   const handleSubmitClick = () => {
-    setIsLoading(true);
-    handleSubmit();
-  };
+    setIsLoading(true)
+    handleSubmit()
+  }
 
   useEffect(() => {
-    if(isLoading && runResult){
-      setIsLoading(false);
+    if (isLoading && runResult) {
+      setIsLoading(false)
     }
-  }, [isLoading, runResult]);
+  }, [isLoading, runResult])
 
   return (
     <div className="bg-white p-4 border border-gray-300 rounded-md shadow-md">
@@ -70,10 +68,17 @@ const ProblemSubmission = ({ handleRun, handleSubmit, runResult }) => {
               {/* Display test cases for failed submissions */}
               {runResult.testcases && (
                 <div className="mt-4">
-                  <h3 className="text-lg font-semibold mb-2">Failed Test Cases:</h3>
+                  <h3 className="text-lg font-semibold mb-2">
+                    Failed Test Cases:
+                  </h3>
                   {runResult.testcases.map((testcase, index) => (
-                    <div key={index} className="border border-gray-300 p-3 mb-3 rounded-md">
-                      <p className="text-red-600 font-semibold mb-2">Test Case {index + 1}:</p>
+                    <div
+                      key={index}
+                      className="border border-gray-300 p-3 mb-3 rounded-md"
+                    >
+                      <p className="text-red-600 font-semibold mb-2">
+                        Test Case {index + 1}:
+                      </p>
                       <div className="mb-2">
                         <p className="font-semibold">Input:</p>
                         <pre className="overflow-x-auto p-2 bg-gray-100 rounded-md">
@@ -92,7 +97,9 @@ const ProblemSubmission = ({ handleRun, handleSubmit, runResult }) => {
                           {testcase.expectedoutput}
                         </pre>
                       </div>
-                      <p className="text-red-600 font-semibold">Status: {testcase.status}</p>
+                      <p className="text-red-600 font-semibold">
+                        Status: {testcase.status}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -102,8 +109,7 @@ const ProblemSubmission = ({ handleRun, handleSubmit, runResult }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProblemSubmission;
-
+export default ProblemSubmission

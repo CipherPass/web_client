@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import ProblemTabs from './ProblemTabs';
-import ProblemDescription from './ProblemDescription';
-import ProblemEditor from './ProblemEditor';
-import ProblemSubmission from './ProblemSubmission';
+import React, { useState } from 'react'
+import ProblemTabs from './ProblemTabs'
+import ProblemDescription from './ProblemDescription'
+import ProblemEditor from './ProblemEditor'
+import ProblemSubmission from './ProblemSubmission'
 
 const failedResult = {
   status: 'Failed',
@@ -21,40 +21,40 @@ const failedResult = {
       status: 'Failed',
     },
   ],
-};
+}
 
 const successResult = {
   status: 'Success',
   timeTaken: '40ms',
   memoryTaken: '128 MB',
-};
+}
 
 const ProblemDetails = () => {
-  const [code, setCode] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('java');
-  const [runResult, setRunResult] = useState(null);
+  const [code, setCode] = useState('')
+  const [selectedLanguage, setSelectedLanguage] = useState('java')
+  const [runResult, setRunResult] = useState(null)
 
-  const languageOptions = ['java', 'python'];
+  const languageOptions = ['java', 'python']
 
   const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
-  };
+    setSelectedLanguage(language)
+  }
 
   const handleRun = () => {
-    setRunResult(null);
+    setRunResult(null)
 
     setTimeout(() => {
       if (Math.random() < 0.5) {
-        setRunResult(failedResult);
+        setRunResult(failedResult)
       } else {
-        setRunResult(successResult);
+        setRunResult(successResult)
       }
-    }, 1500);
-  };
+    }, 1500)
+  }
 
   const handleSubmit = () => {
-    handleRun();
-  };
+    handleRun()
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -79,7 +79,7 @@ const ProblemDetails = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProblemDetails;
+export default ProblemDetails

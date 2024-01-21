@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ProblemSet = () => {
   return (
@@ -19,35 +19,56 @@ const ProblemSet = () => {
             <tr className="bg-gray-50">
               <td className="py-2 px-4">Solved</td>
               <td className="py-2 px-4">
-                <Link to="/problems/question-1" className="text-blue-500 hover:underline">Question 1</Link>
+                <Link
+                  to="/problems/question-1"
+                  className="text-blue-500 hover:underline"
+                >
+                  Question 1
+                </Link>
               </td>
               <td className="py-2 px-4">
-                <span className="bg-green-500 text-white px-2 py-1 rounded-full">Easy</span>
+                <span className="bg-green-500 text-white px-2 py-1 rounded-full">
+                  Easy
+                </span>
               </td>
             </tr>
             <tr className="bg-white">
               <td className="py-2 px-4">Unsolved</td>
               <td className="py-2 px-4">
-                <Link to="/problems/question-2" className="text-blue-500 hover:underline">Question 2</Link>
+                <Link
+                  to="/problems/question-2"
+                  className="text-blue-500 hover:underline"
+                >
+                  Question 2
+                </Link>
               </td>
               <td className="py-2 px-4">
-                <span className="bg-yellow-500 text-white px-2 py-1 rounded-full">Medium</span>
+                <span className="bg-yellow-500 text-white px-2 py-1 rounded-full">
+                  Medium
+                </span>
               </td>
             </tr>
             <tr className="bg-gray-50">
               <td className="py-2 px-4">Solved</td>
               <td className="py-2 px-4">
-                <Link to="/problems/question-3" className="text-blue-500 hover:underline">Question 3</Link>
+                <Link
+                  to="/problems/question-3"
+                  className="text-blue-500 hover:underline"
+                >
+                  Question 3
+                </Link>
               </td>
               <td className="py-2 px-4">
-                <span className="bg-red-500 text-white px-2 py-1 rounded-full">Hard</span>
+                <span className="bg-red-500 text-white px-2 py-1 rounded-full">
+                  Hard
+                </span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProblemSet;
+export default ProblemSet

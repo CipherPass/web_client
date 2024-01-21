@@ -1,66 +1,68 @@
-// ProblemEditor.js
-import React, { useState, useRef, useEffect } from 'react';
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/mode-python';
+import React, { useState } from 'react'
+import AceEditor from 'react-ace'
+import 'ace-builds/src-noconflict/mode-java'
+import 'ace-builds/src-noconflict/mode-python'
 
-import 'ace-builds/src-noconflict/theme-monokai';
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/theme-chaos';
-import 'ace-builds/src-noconflict/theme-cobalt';
-import 'ace-builds/src-noconflict/theme-dracula';
-import 'ace-builds/src-noconflict/theme-github_dark';
-import 'ace-builds/src-noconflict/theme-merbivore_soft';
-import 'ace-builds/src-noconflict/theme-monokai';
-import 'ace-builds/src-noconflict/theme-nord_dark';
-import 'ace-builds/src-noconflict/theme-one_dark';
-import 'ace-builds/src-noconflict/theme-textmate';
-import 'ace-builds/src-noconflict/theme-tomorrow_night_blue';
-import 'ace-builds/src-noconflict/theme-tomorrow_night_eighties';
-import 'ace-builds/src-noconflict/theme-tomorrow_night';
-import 'ace-builds/src-noconflict/theme-xcode';
+import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/theme-github'
+import 'ace-builds/src-noconflict/theme-chaos'
+import 'ace-builds/src-noconflict/theme-cobalt'
+import 'ace-builds/src-noconflict/theme-dracula'
+import 'ace-builds/src-noconflict/theme-github_dark'
+import 'ace-builds/src-noconflict/theme-merbivore_soft'
+import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/theme-nord_dark'
+import 'ace-builds/src-noconflict/theme-one_dark'
+import 'ace-builds/src-noconflict/theme-textmate'
+import 'ace-builds/src-noconflict/theme-tomorrow_night_blue'
+import 'ace-builds/src-noconflict/theme-tomorrow_night_eighties'
+import 'ace-builds/src-noconflict/theme-tomorrow_night'
+import 'ace-builds/src-noconflict/theme-xcode'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+const ProblemEditor = ({
+  code,
+  setCode,
+  selectedLanguage,
+  languageOptions,
+  handleLanguageChange,
+}) => {
+  const [selectedTheme, setSelectedTheme] = useState('monokai')
+  const [fontSize, setFontSize] = useState(14) // Initial font size
+  const [showSettings, setShowSettings] = useState(false)
 
-const ProblemEditor = ({ code, setCode, selectedLanguage, languageOptions, handleLanguageChange }) => {
-  const [selectedTheme, setSelectedTheme] = useState('monokai');
-  const [fontSize, setFontSize] = useState(14); // Initial font size
-  const [showSettings, setShowSettings] = useState(false);
-
-  const themeOptions = ['chaos'
-  ,'cobalt'
-  ,'dracula'
-  ,'github_dark'
-  ,'merbivore_soft'
-  ,'monokai'
-  ,'nord_dark'
-  ,'one_dark'
-  ,'textmate'
-  ,'tomorrow_night_blue'
-  ,'tomorrow_night_eighties'
-  ,'tomorrow_night'
-  ,'xcode'
-];
-  const fontSizeOptions = [14, 16, 18, 20];
-
-  const settingsRef = useRef(null);
+  const themeOptions = [
+    'chaos',
+    'cobalt',
+    'dracula',
+    'github_dark',
+    'merbivore_soft',
+    'monokai',
+    'nord_dark',
+    'one_dark',
+    'textmate',
+    'tomorrow_night_blue',
+    'tomorrow_night_eighties',
+    'tomorrow_night',
+    'xcode',
+  ]
+  const fontSizeOptions = [14, 16, 18, 20]
 
   const toggleSettings = () => {
-    setShowSettings(!showSettings);
-  };
+    setShowSettings(!showSettings)
+  }
 
   const handleThemeChange = (e) => {
-    const themeName = e.target.value;
-    setSelectedTheme(themeName);
+    const themeName = e.target.value
+    setSelectedTheme(themeName)
     // setShowSettings(false);
-};
-  
+  }
 
   const handleFontSizeChange = (e) => {
-    setFontSize(Number(e.target.value));
-  };
+    setFontSize(Number(e.target.value))
+  }
 
   return (
     <div className="mb-6 relative">
@@ -90,12 +92,11 @@ const ProblemEditor = ({ code, setCode, selectedLanguage, languageOptions, handl
 
         {/* Settings dropdown */}
         {showSettings && (
-          <div
-            ref={settingsRef}
-            className="absolute top-0 right-0 mt-8 bg-white p-4 border border-gray-300 rounded-md shadow-md z-10"
-          >
+          <div className="absolute top-0 right-0 mt-8 bg-white p-4 border border-gray-300 rounded-md shadow-md z-10">
             {/* Theme selector */}
-            <label className="block text-sm font-medium text-gray-700 mb-2">Select Theme:</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Theme:
+            </label>
             <select
               id="themeSelector"
               name="themeSelector"
@@ -111,7 +112,9 @@ const ProblemEditor = ({ code, setCode, selectedLanguage, languageOptions, handl
             </select>
 
             {/* Font size selector */}
-            <label className="block text-sm font-medium text-gray-700 mb-2">Select Font Size:</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Font Size:
+            </label>
             <select
               id="fontSizeSelector"
               name="fontSizeSelector"
@@ -142,7 +145,7 @@ const ProblemEditor = ({ code, setCode, selectedLanguage, languageOptions, handl
         width="100%"
       />
     </div>
-  );
-};
+  )
+}
 
-export default ProblemEditor;
+export default ProblemEditor

@@ -1,7 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ProblemSet = () => {
+  // Dummy data for illustration
+  const problems = [
+    { status: 'solved', title: 'Minimum Number of Pushes to Type Word I', slug:"minimum-number-of-pushes-to-type-word-i", difficulty: 'Easy' },
+    { status: 'unsolved', title: 'Count the Number of Houses at a Certain Distance I4', slug:"count-the-number-of-houses-at-a-certain-distance-i4", difficulty: 'Medium' },
+    { status: 'solved', title: 'Count the Number of Houses at a Certain Distance II', slug:"count-the-number-of-houses-at-a-certain-distance-ii", difficulty: 'Hard' },
+  ];
+
+  const getStatusIcon = (status) => {
+    if (status === 'solved') {
+      return <FontAwesomeIcon icon={faCheckCircle} className="text-green-500" />;
+    } else {
+      return <FontAwesomeIcon icon={faExclamationCircle} className="text-red-500" />;
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-md p-8 w-full md:w-2/3 lg:w-1/2">
@@ -16,59 +33,34 @@ const ProblemSet = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-gray-50">
-              <td className="py-2 px-4">Solved</td>
-              <td className="py-2 px-4">
-                <Link
-                  to="/problems/question-1"
-                  className="text-blue-500 hover:underline"
-                >
-                  Question 1
-                </Link>
-              </td>
-              <td className="py-2 px-4">
-                <span className="bg-green-500 text-white px-2 py-1 rounded-full">
-                  Easy
-                </span>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-2 px-4">Unsolved</td>
-              <td className="py-2 px-4">
-                <Link
-                  to="/problems/question-2"
-                  className="text-blue-500 hover:underline"
-                >
-                  Question 2
-                </Link>
-              </td>
-              <td className="py-2 px-4">
-                <span className="bg-yellow-500 text-white px-2 py-1 rounded-full">
-                  Medium
-                </span>
-              </td>
-            </tr>
-            <tr className="bg-gray-50">
-              <td className="py-2 px-4">Solved</td>
-              <td className="py-2 px-4">
-                <Link
-                  to="/problems/question-3"
-                  className="text-blue-500 hover:underline"
-                >
-                  Question 3
-                </Link>
-              </td>
-              <td className="py-2 px-4">
-                <span className="bg-red-500 text-white px-2 py-1 rounded-full">
-                  Hard
-                </span>
-              </td>
-            </tr>
+            {problems.map((problem, index) => (
+              <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                <td className="py-2 px-4">{getStatusIcon(problem.status)}</td>
+                <td className="py-2 px-4">
+                  <Link to={`/problems/${problem.slug}`} className="text-blue-500 hover:underline">
+                    {problem.title}
+                  </Link>
+                </td>
+                <td className="py-2 px-4">
+                  <span
+                    className={`${
+                      problem.difficulty === 'Easy'
+                        ? 'bg-green-500'
+                        : problem.difficulty === 'Medium'
+                        ? 'bg-yellow-500'
+                        : 'bg-red-500'
+                    } text-white px-2 py-1 rounded-full`}
+                  >
+                    {problem.difficulty}
+                  </span>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProblemSet
+export default ProblemSet;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import ProblemTabs from './ProblemTabs'
-import ProblemDescription from './ProblemDescription'
-import ProblemEditor from './ProblemEditor'
-import ProblemSubmission from './ProblemSubmission'
+import ProblemTabs from '../components/ProblemTabs'
+import ProblemDescription from '../components/ProblemDescription'
+import ProblemEditor from '../components/ProblemEditor'
+import ProblemSubmission from '../components/ProblemSubmission'
 
 const failedResult = {
   status: 'Failed',

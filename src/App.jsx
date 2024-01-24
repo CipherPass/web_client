@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import ProblemSet from './pages/ProblemSet'
-import ProblemDetails from './pages/ProblemDetails'
+import Progress from './components/Progress'
+
+const ProblemSet = lazy(() => import('./pages/ProblemSet'))
+const ProblemDetails = lazy(() => import('./pages/ProblemDetails'))
+const Error = lazy(() => import('./pages/Error'))
 
 const AppLayout = () => {
   console.log('AppLayout Rendered')
@@ -16,19 +19,31 @@ const appRouter = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <ProblemSet />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
-        element: <ProblemSet />,
+        element: (
+          <Suspense fallback={<Progress />}>
+            <ProblemSet />
+          </Suspense>
+        ),
       },
       {
         path: '/problemset',
-        element: <ProblemSet />,
+        element: (
+          <Suspense fallback={<Progress />}>
+            <ProblemSet />
+          </Suspense>
+        ),
       },
       {
         path: '/problems/:problemSlug',
-        element: <ProblemDetails />,
+        element: (
+          <Suspense fallback={<Progress />}>
+            <ProblemDetails />{' '}
+          </Suspense>
+        ),
       },
     ],
   },

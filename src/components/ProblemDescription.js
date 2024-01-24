@@ -1,14 +1,18 @@
-// ProblemDescription.js
 import React from 'react'
+import MarkdownPreview from '@uiw/react-markdown-preview'
 
-const ProblemDescription = () => {
+const ProblemDescription = ({ problem }) => {
+  console.log('ProblemDescription: ', problem)
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">Description</h2>
-      <p>
-        Replace this text with the actual problem description, including title,
-        examples, and constraints.
-      </p>
+      <h2 className="text-2xl font-semibold mb-4">{problem.title}</h2>
+      {/* Render Markdown content */}
+      <MarkdownPreview
+        source={problem.description}
+        wrapperElement={{
+          'data-color-mode': 'light',
+        }}
+      />
     </div>
   )
 }

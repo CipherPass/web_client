@@ -25,11 +25,14 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@stomp/stompjs": "^7.0.0",
     "@uiw/react-markdown-preview": "^4.1.16",
     "dotenv": "^16.4.0",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3"
-  }
+    "react-router-dom": "^6.21.3",
+    "sockjs-client": "^1.6.1"
+  },
+  "proxy": "http://localhost:8888"
 }

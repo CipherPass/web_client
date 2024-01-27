@@ -5,4 +5,3 @@ if (BACKEND_URL === undefined) {
 }
 console.log(BACKEND_URL)
 export { BACKEND_URL }
-

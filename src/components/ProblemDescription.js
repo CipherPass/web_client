@@ -1,7 +1,7 @@
 import React from 'react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 
-const ProblemDescription = ({ problem }) => {
+const ProblemDescription = React.memo(({ problem }) => {
   console.log('ProblemDescription: ', problem)
   return (
     <div>
@@ -15,6 +15,6 @@ const ProblemDescription = ({ problem }) => {
       />
     </div>
   )
-}
-
+})
+ProblemDescription.displayName = 'ProblemDescription'
 export default ProblemDescription

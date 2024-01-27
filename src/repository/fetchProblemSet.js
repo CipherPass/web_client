@@ -1,8 +1,8 @@
 import { BACKEND_URL } from '../constants'
 
-const fetchProblemSet = async () => {
+const fetchProblemSet = async (page = 0, size = 20) => {
   console.log('fetchProblemSet')
-  const url = `${BACKEND_URL}/api/problemset/all`
+  const url = `${BACKEND_URL}/api/problemset/all?page=${page}&size=${size}`
   try {
     const response = await fetch(url)
     const data = await response.json()
@@ -16,4 +16,3 @@ const fetchProblemSet = async () => {
 }
 
 export default fetchProblemSet
-

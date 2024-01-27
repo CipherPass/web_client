@@ -6,6 +6,8 @@ import ProblemSubmission from '../components/ProblemSubmission'
 import useProblemDetails from '../models/useProblemDetails'
 import { useParams } from 'react-router-dom'
 import Progress from '../components/Progress'
+import WebSocketUtil from '../models/submitCode'
+
 const failedResult = {
   status: 'Failed',
   title: 'Compilation Error',
@@ -49,15 +51,43 @@ const ProblemDetails = () => {
 
   const handleRun = () => {
     setRunResult(null)
-
-    // Simulating a server response delay
-    setTimeout(() => {
-      if (Math.random() < 0.5) {
-        setRunResult(failedResult)
-      } else {
-        setRunResult(successResult)
+    WebSocketUtil.sendCodeSubmissionRequest(
+      problemSlug,
+      {
+        code,
+        languageSlug: selectedLanguage,
+      },
+      (result) => {
+        if (result.judgement === 'Accepted') {
+          setRunResult({
+            status: 'Success',
+            timeTaken: '40ms',
+            memoryTaken: '128 MB',
+          })
+        } else if (result.judgement === 'CompilationError') {
+          setRunResult({
+            status: 'Failed',
+            title: 'Compilation Error',
+            testcases: [],
+          })
+        } else if (result.judgement === 'NotAccepted') {
+          setRunResult({
+            status: 'Failed',
+            title: 'Not Accepted',
+            testcases: [],
+          })
+        } else {
+          setRunResult({
+            status: 'Unknown response',
+            title: `Judgement: ${result.judgement}`,
+            testcases: [],
+          })
+        }
+      },
+      () => {
+        setRunResult(null)
       }
-    }, 1500)
+    )
   }
 
   const handleSubmit = () => {
@@ -68,10 +98,12 @@ const ProblemDetails = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white min-h-screen shadow-md rounded-md p-2 w-full flex flex-col md:flex-row">
         {isLoading ? (
-          <ProblemTabs />
+          <Progress />
         ) : (
           <>
             <div className="w-full md:w-1/2 md:mr-8">
+              <ProblemTabs />
+
               <ProblemDescription problem={problem} />
             </div>
             <div className="w-full md:w-1/2">
